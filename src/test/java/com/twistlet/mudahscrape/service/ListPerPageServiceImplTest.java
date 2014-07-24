@@ -3,8 +3,6 @@ package com.twistlet.mudahscrape.service;
 import static org.junit.Assert.*;
 
 import java.io.IOException;
-import java.net.URI;
-import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
