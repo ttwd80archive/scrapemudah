@@ -7,7 +7,7 @@ public class ListYesterdayServiceImpl implements ListYesterdayService {
 
 	@Override
 	public List<URI> listYesterday(String urlPattern) {
-		
+
 		// TODO Auto-generated method stub
 		return null;
 	}
