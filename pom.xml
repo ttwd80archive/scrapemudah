@@ -133,6 +133,17 @@
 			<version>2.4</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.3.2</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.6</version>
+			<scope>runtime</scope>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>scrapemudah</finalName>
