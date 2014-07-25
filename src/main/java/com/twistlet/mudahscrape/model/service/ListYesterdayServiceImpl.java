@@ -1,4 +1,4 @@
-package com.twistlet.mudahscrape.service;
+package com.twistlet.mudahscrape.model.service;
 
 import java.net.URI;
 import java.net.URISyntaxException;

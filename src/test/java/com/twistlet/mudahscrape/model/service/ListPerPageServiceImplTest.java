@@ -1,4 +1,4 @@
-package com.twistlet.mudahscrape.service;
+package com.twistlet.mudahscrape.model.service;
 
 import static org.junit.Assert.*;
 
@@ -11,6 +11,8 @@ import org.jsoup.nodes.Document;
 import org.junit.Test;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+
+import com.twistlet.mudahscrape.model.service.ListPerPageServiceImpl;
 
 public class ListPerPageServiceImplTest {
 

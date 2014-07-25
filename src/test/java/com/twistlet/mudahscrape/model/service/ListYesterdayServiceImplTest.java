@@ -1,4 +1,4 @@
-package com.twistlet.mudahscrape.service;
+package com.twistlet.mudahscrape.model.service;
 
 import static org.mockito.Mockito.*;
 
@@ -14,6 +14,11 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.core.io.ClassPathResource;
+
+import com.twistlet.mudahscrape.model.service.DocumentService;
+import com.twistlet.mudahscrape.model.service.ListPerPageService;
+import com.twistlet.mudahscrape.model.service.ListPerPageServiceImpl;
+import com.twistlet.mudahscrape.model.service.ListYesterdayServiceImpl;
 
 public class ListYesterdayServiceImplTest {
 

@@ -1,4 +1,4 @@
-package com.twistlet.mudahscrape.service;
+package com.twistlet.mudahscrape.model.service;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
@@ -17,6 +17,8 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.springframework.core.io.ClassPathResource;
+
+import com.twistlet.mudahscrape.model.service.DocumentServiceImpl;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(Jsoup.class)

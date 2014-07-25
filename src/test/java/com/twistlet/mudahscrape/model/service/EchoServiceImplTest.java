@@ -1,8 +1,10 @@
-package com.twistlet.mudahscrape.service;
+package com.twistlet.mudahscrape.model.service;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import com.twistlet.mudahscrape.model.service.EchoServiceImpl;
 
 public class EchoServiceImplTest {
 
