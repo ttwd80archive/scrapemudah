@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
 public class ListYesterdayServiceImpl implements ListYesterdayService {
 
 	protected final Logger logger = LoggerFactory.getLogger(getClass());
-	private final String FILTER_PREFIX = "Yesterday, ";
+	private final String FILTER_PREFIX = "Yesterday,";
 
 	private final DocumentService documentService;
 	private final ListPerPageService listPerPageService;
@@ -38,7 +38,7 @@ public class ListYesterdayServiceImpl implements ListYesterdayService {
 		int pageNumber = 1;
 		List<URI> list = new ArrayList<URI>();
 		boolean seenYesterday = false;
-		while (pageNumber <= 1_000) {
+		while (true) {
 			String requestUrl = MessageFormat.format(urlPattern, pageNumber);
 			Document document = null;
 			try {
@@ -48,8 +48,8 @@ public class ListYesterdayServiceImpl implements ListYesterdayService {
 			}
 			if (document == null) {
 				nullDocuments.add(pageNumber);
-				if ((nullDocuments.lastIndexOf(pageNumber)
-						- nullDocuments.indexOf(pageNumber)) > 1_000) {
+				if ((nullDocuments.lastIndexOf(pageNumber) - nullDocuments
+						.indexOf(pageNumber)) >= 10) {
 					throw new RuntimeException("bad url: " + requestUrl);
 				}
 				continue;
@@ -62,7 +62,7 @@ public class ListYesterdayServiceImpl implements ListYesterdayService {
 				}
 			}
 			if (seenYesterday == true) {
-				if (stopOnLastItemInMapIsYesterday(map)) {
+				if (stopOnLastItemInMapIsNotYesterday(map)) {
 					break;
 				}
 			}
@@ -87,18 +87,19 @@ public class ListYesterdayServiceImpl implements ListYesterdayService {
 		}
 	}
 
-	private boolean stopOnLastItemInMapIsYesterday(final Map<String, String> map) {
+	private boolean stopOnLastItemInMapIsNotYesterday(
+			final Map<String, String> map) {
 		int size = map.size();
 		if (size > 0) {
-			List<String> keys = new ArrayList<String>(map.keySet());
-			Collections.reverse(keys);
-			String item = keys.get(size - 1);
-			if (item.startsWith(FILTER_PREFIX)) {
-				return false;
+			List<String> values = new ArrayList<String>(map.values());
+			Collections.reverse(values);
+			String item = values.get(0);
+			if (!item.startsWith(FILTER_PREFIX)) {
+				return true;
 			}
 
 		}
-		return true;
+		return false;
 
 	}
 
