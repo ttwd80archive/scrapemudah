@@ -1,0 +1,39 @@
+package com.twistlet.mudahscrape.service;
+
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
+
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+
+import org.apache.commons.io.IOUtils;
+import org.jsoup.Connection;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
+import org.springframework.core.io.ClassPathResource;
+
+@RunWith(PowerMockRunner.class)
+@PrepareForTest(Jsoup.class)
+public class DocumentServiceImplTest {
+
+	@Test
+	public void testGet() throws IOException, URISyntaxException {
+		Document document1 = Jsoup.parse(IOUtils
+				.toString(new ClassPathResource("html/simple.html")
+						.getInputStream()));
+		PowerMockito.mockStatic(Jsoup.class);
+		Connection connection1 = mock(Connection.class);
+		when(Jsoup.connect("http://www.mudah.my/")).thenReturn(connection1);
+		when(connection1.get()).thenReturn(document1);
+		DocumentServiceImpl sut = new DocumentServiceImpl();
+		Document document = sut.get(new URI("http://www.mudah.my/"));
+		assertEquals("Simple HTML5", document.title());
+	}
+
+}
