@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
 public class ListYesterdayServiceImpl implements ListYesterdayService {
 
 	protected final Logger logger = LoggerFactory.getLogger(getClass());
-	private final String FILTER_PREFIX = "Yesterday,";
+	private final String FILTER_PREFIX = "Yesterday";
 
 	private final DocumentService documentService;
 	private final ListPerPageService listPerPageService;
@@ -94,7 +94,7 @@ public class ListYesterdayServiceImpl implements ListYesterdayService {
 			List<String> values = new ArrayList<String>(map.values());
 			Collections.reverse(values);
 			String item = values.get(0);
-			if (!item.startsWith(FILTER_PREFIX)) {
+			if (!item.equals(FILTER_PREFIX)) {
 				return true;
 			}
 
@@ -106,7 +106,7 @@ public class ListYesterdayServiceImpl implements ListYesterdayService {
 	private boolean mapContainsYesterday(final Map<String, String> map) {
 		Collection<String> list = map.values();
 		for (String item : list) {
-			if (item.startsWith(FILTER_PREFIX)) {
+			if (item.equals(FILTER_PREFIX)) {
 				return true;
 			}
 		}

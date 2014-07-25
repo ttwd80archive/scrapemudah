@@ -5,6 +5,7 @@ import java.net.URISyntaxException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -16,16 +17,16 @@ public class ListPerPageServiceImpl implements ListPerPageService {
 	protected final Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Override
-	public Map<String, String> listPerPage(Document document) {
+	public Map<String, String> listPerPage(final Document document) {
 		Map<String, String> map = new LinkedHashMap<String, String>();
 		Elements elements = document.select("div.list_ads");
 		for (Element element : elements) {
 			URI uri = extractURI(element.select("div.list_title a").first());
 			if (uri != null) {
-				String dateAndLocation = extractDateAndLocation(element.select(
-						"div.location").first());
-				if (dateAndLocation != null) {
-					map.put(uri.toString(), dateAndLocation);
+				String date = extractDate(element.select("div.location")
+						.first());
+				if (date != null) {
+					map.put(uri.toString(), date);
 				}
 			}
 
@@ -33,15 +34,18 @@ public class ListPerPageServiceImpl implements ListPerPageService {
 		return map;
 	}
 
-	private String extractDateAndLocation(Element element) {
+	private String extractDate(final Element element) {
 		if (element != null) {
-			return element.text();
-		} else {
-			return null;
+			String dateAndTime = element.text();
+			String[] components = StringUtils.split(dateAndTime, ",");
+			if (components.length > 1) {
+				return components[0];
+			}
 		}
+		return null;
 	}
 
-	protected URI extractURI(Element element) {
+	protected URI extractURI(final Element element) {
 		if (element != null) {
 			String href = element.attr("href");
 			try {
