@@ -34,6 +34,7 @@ public class ListYesterdayServiceImpl implements ListYesterdayService {
 
 	@Override
 	public List<URI> listYesterday(final String urlPattern) {
+		List<Integer> nullDocuments = new ArrayList<Integer>();
 		int pageNumber = 1;
 		List<URI> list = new ArrayList<URI>();
 		boolean seenYesterday = false;
@@ -46,6 +47,11 @@ public class ListYesterdayServiceImpl implements ListYesterdayService {
 				throw new RuntimeException(e);
 			}
 			if (document == null) {
+				nullDocuments.add(pageNumber);
+				if ((nullDocuments.lastIndexOf(pageNumber)
+						- nullDocuments.indexOf(pageNumber)) > 1_000) {
+					throw new RuntimeException("bad url: " + requestUrl);
+				}
 				continue;
 			}
 			Map<String, String> map = listPerPageService.listPerPage(document);
@@ -60,6 +66,7 @@ public class ListYesterdayServiceImpl implements ListYesterdayService {
 					break;
 				}
 			}
+			pageNumber++;
 		}
 		return list;
 	}
