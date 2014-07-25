@@ -36,4 +36,15 @@ public class DocumentServiceImplTest {
 		assertEquals("Simple HTML5", document.title());
 	}
 
+	@Test
+	public void testGetIOException() throws IOException, URISyntaxException {
+		PowerMockito.mockStatic(Jsoup.class);
+		Connection connection1 = mock(Connection.class);
+		when(Jsoup.connect("http://www.mudah.my/")).thenReturn(connection1);
+		when(connection1.get()).thenThrow(new IOException());
+		DocumentServiceImpl sut = new DocumentServiceImpl();
+		Document document = sut.get(new URI("http://www.mudah.my/"));
+		assertNull(document);
+	}
+
 }
