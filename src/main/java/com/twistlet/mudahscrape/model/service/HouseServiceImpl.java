@@ -113,13 +113,15 @@ public class HouseServiceImpl implements HouseService {
 	private Optional<Number> extractNumber(final Document document,
 			final String selector) {
 		String text = extractText(document, selector);
-		text = StringUtils.remove(text, " ");
-		text = StringUtils.remove(text, "RM");
-		try {
-			Number n = new Long(text);
-			return Optional.of(n);
-		} catch (NumberFormatException e) {
-			logger.error("{} - {}", document.location(), e.toString());
+		if (text != null) {
+			text = StringUtils.remove(text, " ");
+			text = StringUtils.remove(text, "RM");
+			try {
+				Number n = new Long(text);
+				return Optional.of(n);
+			} catch (NumberFormatException e) {
+				logger.error("{} - {}", document.location(), e.toString());
+			}
 		}
 		return Optional.empty();
 	}
