@@ -8,8 +8,8 @@
 
 	<mvc:annotation-driven />
 
-	<mvc:resources location="resources/" mapping="/resources/**" />
-	<mvc:resources mapping="/webjars/**" location="/webjars/" />
+	<mvc:resources location="/resources/" mapping="/resources/**" />
+	<mvc:resources location="/webjars/" mapping="/webjars/**" />
 
 
 	<mvc:view-controller path="/login" />
