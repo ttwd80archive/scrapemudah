@@ -17,6 +17,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.twistlet.mudahscrape.model.entity.House;
@@ -27,6 +28,7 @@ public class HouseServiceImpl implements HouseService {
 	private final DocumentService documentService;
 	protected final Logger logger = LoggerFactory.getLogger(getClass());
 
+	@Autowired
 	public HouseServiceImpl(final DocumentService documentService) {
 		this.documentService = documentService;
 	}
@@ -39,7 +41,7 @@ public class HouseServiceImpl implements HouseService {
 			house.setUrl(url);
 			Date today = new Date();
 			Date yesterday = DateUtils.addDays(today, -1);
-			FastDateFormat df = FastDateFormat.getInstance("dd/MM/yyyy");
+			FastDateFormat df = FastDateFormat.getInstance("yyyy-MM-dd");
 			house.setPostedDate(df.format(yesterday));
 			house.setTitle(extractText(document, "#ad-title"));
 			extractNumber(document, "#price").ifPresent(

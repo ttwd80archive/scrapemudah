@@ -10,4 +10,7 @@
 	<bean id="org.springframework.scheduling.support.CronTrigger#0"
 		class="java.lang.Object" />
 
+	<bean id="org.springframework.scheduling.support.PeriodicTrigger#0"
+		class="java.lang.Object" />
+
 </beans>

@@ -6,7 +6,7 @@
 		</encoder>
 	</appender>
 
-	<logger name="org.springframework.context.annotation" level="INFO" />
+	<logger name="com.twistlet.mudahscrape.model.service" level="DEBUG" />
 
 	<root level="INFO">
 		<appender-ref ref="STDOUT" />

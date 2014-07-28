@@ -106,7 +106,7 @@ public class HouseServiceImplTest {
 	}
 
 	private String yesterday() {
-		FastDateFormat df = FastDateFormat.getInstance("dd/MM/yyyy");
+		FastDateFormat df = FastDateFormat.getInstance("yyyy-MM-dd");
 		Date today = new Date();
 		return df.format(DateUtils.addDays(today, -1));
 	}
