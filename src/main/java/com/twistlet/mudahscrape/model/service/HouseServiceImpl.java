@@ -17,9 +17,11 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 import com.twistlet.mudahscrape.model.entity.House;
 
+@Service("houseService")
 public class HouseServiceImpl implements HouseService {
 
 	private final DocumentService documentService;

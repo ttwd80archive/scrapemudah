@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+	<bean
+		id="org.springframework.integration.config.SourcePollingChannelAdapterFactoryBean#0.source"
+		class="java.lang.Object" />
+
+	<bean id="org.springframework.scheduling.support.CronTrigger#0"
+		class="java.lang.Object" />
+
+</beans>

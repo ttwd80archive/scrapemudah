@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:int="http://www.springframework.org/schema/integration"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration-4.0.xsd">
+
+	<int:inbound-channel-adapter ref="echoServiceSelangorSell"
+		method="echo" channel="channelBaseUrl">
+		<int:poller cron="0 0 1 * * ?" />
+	</int:inbound-channel-adapter>
+
+	<int:channel id="channelBaseUrl" />
+
+	<int:service-activator ref="listYesterdayService"
+		method="listYesterday" input-channel="channelBaseUrl" output-channel="channelListUrlDaily" />
+
+	<int:channel id="channelListUrlDaily" />
+
+	<int:splitter input-channel="channelListUrlDaily"
+		output-channel="channelUrlDaily" />
+
+	<int:channel id="channelUrlDaily" />
+
+	<int:service-activator ref="houseService" method="toHouse"
+		input-channel="channelUrlDaily" output-channel="channelHouse" />
+
+	<int:channel id="channelHouse" />
+
+	<int:service-activator input-channel="channelHouse"
+		method="saveHouse" ref="databaseService" />
+
+</beans>
