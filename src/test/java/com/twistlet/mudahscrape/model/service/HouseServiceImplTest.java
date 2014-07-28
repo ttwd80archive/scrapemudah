@@ -35,6 +35,8 @@ public class HouseServiceImplTest {
 
 	Document document4;
 
+	Document document5;
+
 	@Mock
 	DocumentService documentService;
 
@@ -45,6 +47,7 @@ public class HouseServiceImplTest {
 		document2 = toDocument("html/content-sale-strata-2");
 		document3 = toDocument("html/content-rent-strata-1");
 		document4 = toDocument("html/content-rent-strata-2");
+		document5 = toDocument("html/content-sale-landed-1");
 		sut = new HouseServiceImpl(documentService);
 	}
 
@@ -102,6 +105,19 @@ public class HouseServiceImplTest {
 		String expected = "House[url=http://www.google.com,postedDate="
 				+ yesterday()
 				+ ",title=Apt Sri Angkasa, Seksyen 28, Shah Alam,price=150000,state=Selangor,district=Shah Alam,propertyType=Apartment/ Flat,titleType=Freehold,bedroom=2,bathroom=1,bumi=true,postedBy=ZUL,content=Apt Sri Angkasa Taman Alam Megah Seksyen 28 Shah Alam -Freehold -688 kp -Tingkat 4 -2 bilik/1 bilik air -Bank nilai RM160K -Harga Jualan RM150 -Deposit 3%. Baki 7% & legal fee - kwsp. -Zul 016 2774287]";
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	public void testToHouse5() throws URISyntaxException {
+		when(documentService.get(new URI("http://www.google.com"))).thenReturn(
+				document5);
+		House house = sut.toHouse("http://www.google.com");
+		String actual = ToStringBuilder.reflectionToString(house,
+				ToStringStyle.SHORT_PREFIX_STYLE);
+		String expected = "House[url=http://www.google.com,postedDate="
+				+ yesterday()
+				+ ",title=Bandar Puteri Klang,Bukit Tinggi,price=0,state=Selangor,district=Bandar Bukit Tinggi,propertyType=Double storey,titleType=-,bedroom=4,bathroom=3,bumi=false,postedBy=Vicky,content=-GOOD CONDITION WITH KITCHEN CABINET,BUILD IN WARDCOBE,PLUS ACCESS 2 UNITS -FREEHOLD -BELOW MARKET PRICE -NON-BUMI FOR SALE -RM550K(NEGO)]";
 		assertEquals(expected, actual);
 	}
 
