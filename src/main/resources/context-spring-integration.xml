@@ -6,8 +6,7 @@
 
 	<int:inbound-channel-adapter ref="echoServiceSelangorSell"
 		method="echo" channel="channelBaseUrl">
-		<!-- <int:poller cron="0 0 1 * * ?" /> -->
-		<int:poller fixed-delay="60000" />
+		<int:poller cron="0 0 1 * * ?" />
 	</int:inbound-channel-adapter>
 
 	<int:channel id="channelBaseUrl" />
