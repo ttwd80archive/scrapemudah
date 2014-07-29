@@ -4,9 +4,16 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration-4.0.xsd">
 
+	<int:poller id="cronPoller" cron="0 0 1 * * ?" />
+
 	<int:inbound-channel-adapter ref="echoServiceSelangorSell"
 		method="echo" channel="channelBaseUrl">
-		<int:poller cron="0 0 1 * * ?" />
+		<int:poller ref="cronPoller" />
+	</int:inbound-channel-adapter>
+
+	<int:inbound-channel-adapter ref="echoServiceKlSell"
+		method="echo" channel="channelBaseUrl">
+		<int:poller ref="cronPoller" />
 	</int:inbound-channel-adapter>
 
 	<int:channel id="channelBaseUrl" />

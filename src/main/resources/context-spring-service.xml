@@ -10,5 +10,8 @@
 	<bean id="echoServiceSelangorSell" class="com.twistlet.mudahscrape.model.service.EchoServiceImpl">
 		<constructor-arg value="${url.selangor.sell}" />
 	</bean>
-	
+	<bean id="echoServiceKlSell" class="com.twistlet.mudahscrape.model.service.EchoServiceImpl">
+		<constructor-arg value="${url.kl.sell}" />
+	</bean>
+
 </beans>

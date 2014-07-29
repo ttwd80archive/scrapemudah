@@ -13,4 +13,8 @@
 	<bean id="org.springframework.scheduling.support.PeriodicTrigger#0"
 		class="java.lang.Object" />
 
+	<bean
+		id="org.springframework.integration.config.SourcePollingChannelAdapterFactoryBean#1.source"
+		class="java.lang.Object" />
+
 </beans>
