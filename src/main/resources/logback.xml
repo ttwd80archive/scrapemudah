@@ -6,7 +6,20 @@
 		</encoder>
 	</appender>
 
-	<logger name="com.twistlet.mudahscrape.model.service" level="DEBUG" />
+	<appender name="FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${user.home}/logs/scrapemudah.log</file>
+		<prudent>true</prudent>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${user.home}/logs/scrapemudah-%d{yyyy-MM}.log</fileNamePattern>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%date{ISO8601} %level %logger%n%msg %n</pattern>
+		</encoder>
+	</appender>
+
+
+	<logger name="com.twistlet.mudahscrape.model.service" level="INFO" />
 
 	<root level="INFO">
 		<appender-ref ref="STDOUT" />
